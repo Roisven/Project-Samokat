@@ -19,7 +19,7 @@ public class HomePage {
 
     //нижняя кнопка "заказать"
     private static final By SECOND_ORDER_BUTTON =
-            By.xpath(".//button[@class='Button_Button__ra12g Button_UltraBig__UU3Lp']");
+            By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
 
     private final WebDriver driver;
 

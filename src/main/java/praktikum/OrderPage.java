@@ -70,7 +70,7 @@ public class OrderPage {
 
     //выбрать метро
     public void clickMetroStation(String metroStation){
-        By stationButton = By.xpath(".//div[@class='Order_Filled__3GNlS' and text()='" + metroStation + "']");
+        By stationButton = By.xpath(".//div[@class='Order_Text__2broi' and text()='" + metroStation + "']");
         isVisible(stationButton);
         driver.findElement(stationButton).click();
     }
@@ -85,7 +85,7 @@ public class OrderPage {
     //выбрать, на какой срок
     public void pickHowLong(String howLong) {
         driver.findElement(HOW_LONG).click();
-        driver.findElement(By.xpath(".//div[@class='Dropdown-placeholder is-selected' and text()='" + howLong +"']")).click();
+        driver.findElement(By.xpath(".//div[@class='Dropdown-option' and text()='" + howLong +"']")).click();
     }
 
     //выбрать цвет

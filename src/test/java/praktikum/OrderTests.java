@@ -1,6 +1,5 @@
 package praktikum;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.After;
@@ -9,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 
 @RunWith(Parameterized.class)
@@ -19,8 +19,7 @@ public class OrderTests extends SetupBrowser {
 
     @Before
     public void before() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        this.driver = setupBrowser("Firefox");
     }
 
 
@@ -59,21 +58,22 @@ public class OrderTests extends SetupBrowser {
     @Test
     public void checkMadeOrderFirstButton(){
         OrderPage orderPage = new OrderPage(driver);
-        HomePage mainPage = new HomePage(driver);
-        mainPage.open();
-        mainPage.clickVisibleFirstOrderButton();
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+        homePage.clickVisibleFirstOrderButton();
         orderPage.makeOrder(name, lastName, adress, metroStation, phoneNumber, date, howLong, color);
-        Assert.assertTrue(orderPage.getActualText().contains("Заказ оформлен"));
+
+        Assert.assertTrue("Сообщение о успешном заказе не появляется", orderPage.getActualText().contains("Заказ оформлен"));
     }
 
     @Test
     public void checkMadeOrderSecondButton(){
         OrderPage orderPage = new OrderPage(driver);
-        HomePage mainPage = new HomePage(driver);
-        mainPage.open();
-        mainPage.scrollAndClickSecondOrderButton();
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+        homePage.scrollAndClickSecondOrderButton();
         orderPage.makeOrder(name, lastName, adress, metroStation, phoneNumber, date, howLong, color);
-        Assert.assertTrue(orderPage.getActualText().contains("Заказ оформлен"));
+        Assert.assertTrue("Сообщение о успешном заказе не появляется", orderPage.getActualText().contains("Заказ оформлен"));
     }
 
     @After
